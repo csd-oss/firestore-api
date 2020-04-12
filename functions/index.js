@@ -1,17 +1,16 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin')
+const express = require('express')
+const app = express();
+const cors = require('cors')
+
+app.use(cors({origin:true}));
 
 var serviceAccount = require("./permisions.json");
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://work-as-a-horse.firebaseio.com"
 });
-
-const express = require('express')
-const cors = require('cors')
-const app = express();
-
 
 //Routes 
 app.get('/helloWorld', (req, res) => {
