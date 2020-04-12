@@ -12,11 +12,8 @@ admin.initializeApp({
   databaseURL: "https://work-as-a-horse.firebaseio.com"
 });
 const db = admin.firestore();
-//Routes 
-app.get('/helloWorld', (req, res) => {
-    return res.status(200).send('Hello World');
-});
 
+//Routes 
  //Create
  //Post
  app.post('/api/resumes', (req, res) => {
