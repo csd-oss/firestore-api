@@ -1,3 +1,7 @@
+#
+firebase.json
+.firebaserc
+package.json
 # Logs
 logs
 *.log
