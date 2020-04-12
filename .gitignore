@@ -1,6 +1,7 @@
 #
 firebase.json
 .firebaserc
+permisions.json
 # Logs
 logs
 *.log
