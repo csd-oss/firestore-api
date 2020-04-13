@@ -45,7 +45,28 @@ const db = admin.firestore();
 });
 
 
-//Read
+//Read a specific product based on ID
+//Get
+app.get('/api/resumes/:id', (req, res) => {
+    (async() => {
+        try {
+            const doument = db.collection('resumes').doc(req.params.id);
+            let resume = await doument.get();
+            let response = resume.data();
+                
+
+        
+            return res.status(200).send(response);
+            
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error);
+        }
+
+
+
+    } )();
+});
 
 //Update
 
