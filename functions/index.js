@@ -92,8 +92,35 @@ app.get('/api/resumes', (req, res) => {
                 }
                 return response
             })
-
             return res.status(200).send(response);
+            
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error);
+        }
+
+    } )();
+});
+
+//Update
+app.put('/api/resumes/:id', (req, res) => {
+    (async() => {
+        try {
+            const document = db.collection('resumes').doc(req.params.id);
+            await document.update({
+                basics:req.body.basics,
+                work:req.body.work,
+                volunteer:req.body.volunteer,
+                education:req.body.education,
+                awards:req.body.awards,
+                publications:req.body.publications,
+                skills:req.body.skills,
+                languages:req.body.languages,
+                interests:req.body.interests,
+                references:req.body.references
+
+            })
+            return res.status(200).send();
             
         } catch (error) {
             console.log(error);
@@ -104,9 +131,6 @@ app.get('/api/resumes', (req, res) => {
 
     } )();
 });
-
-//Update
-
 //Delete
 
 //Export to Firebase Cloud functions
