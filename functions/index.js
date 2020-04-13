@@ -45,7 +45,7 @@ const db = admin.firestore();
 });
 
 
-//Read a specific product based on ID
+//Read a specific resume based on ID
 //Get
 app.get('/api/resumes/:id', (req, res) => {
     (async() => {
@@ -53,9 +53,46 @@ app.get('/api/resumes/:id', (req, res) => {
             const doument = db.collection('resumes').doc(req.params.id);
             let resume = await doument.get();
             let response = resume.data();
-                
+            return res.status(200).send(response);
+            
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error);
+        }
 
-        
+
+
+    } )();
+});
+//Read all resumes
+//Get
+app.get('/api/resumes', (req, res) => {
+    (async() => {
+        try {
+            let query = db.collection('resumes');
+            let response = [];
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+                for (let doc of docs)
+                {
+                    const selectedResume = {
+                    id: doc.id,
+                    basics:doc.data().basics,
+                    work:doc.data().work,
+                    volunteer:doc.data().volunteer,
+                    education:doc.data().education,
+                    awards:doc.data().awards,
+                    publications:doc.data().publications,
+                    skills:doc.data().skills,
+                    languages:doc.data().languages,
+                    interests:doc.data().interests,
+                    references:doc.data().references
+                };
+                response.push(selectedResume);
+                }
+                return response
+            })
+
             return res.status(200).send(response);
             
         } catch (error) {
