@@ -39,8 +39,6 @@ const db = admin.firestore();
             return res.status(500).send(error);
         }
 
-
-
     } )();
 });
 
@@ -59,8 +57,6 @@ app.get('/api/resumes/:id', (req, res) => {
             console.log(error);
             return res.status(500).send(error);
         }
-
-
 
     } )();
 });
@@ -127,8 +123,6 @@ app.put('/api/resumes/:id', (req, res) => {
             return res.status(500).send(error);
         }
 
-
-
     } )();
 });
 //Delete
@@ -143,8 +137,6 @@ app.delete('/api/resumes/:id', (req, res) => {
             console.log(error);
             return res.status(500).send(error);
         }
-
-
 
     } )();
 });
