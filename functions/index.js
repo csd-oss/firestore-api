@@ -15,8 +15,8 @@ admin.initializeApp({
 const db = admin.firestore();
 
 
- app.post('/api/resumes', (req, res) => {
-    (async() => {
+ app.post('/api/resumes', async(req, res) => {
+
         try {
             await db.collection('resumes').doc().create({
                 basics:req.body.basics,
@@ -36,15 +36,12 @@ const db = admin.firestore();
         } catch (error) {
             return res.status(500).send(error);
         }
-
-    } )();
 });
 
 
 //Read a specific resume based on ID
 //Get
-app.get('/api/resumes/:id', (req, res) => {
-    (async() => {
+app.get('/api/resumes/:id', async(req, res) => {
         try {
             const doument = db.collection('resumes').doc(req.params.id);
             let resume = await doument.get();
@@ -53,9 +50,7 @@ app.get('/api/resumes/:id', (req, res) => {
         } catch (error) {
             console.log(error);
             return res.status(500).send(error);
-        }
-
-    } )();
+        } 
 });
 //Read all resumes
 //Get
@@ -94,8 +89,7 @@ app.get('/api/resumes', async(req, res) => {
 });
 
 //Update
-app.put('/api/resumes/:id', (req, res) => {
-    (async() => {
+app.put('/api/resumes/:id', async(req, res) => {
         try {
             const document = db.collection('resumes').doc(req.params.id);
             await document.update({
@@ -117,12 +111,10 @@ app.put('/api/resumes/:id', (req, res) => {
             console.log(error);
             return res.status(500).send(error);
         }
-
-    } )();
 });
 //Delete
-app.delete('/api/resumes/:id', (req, res) => {
-    (async() => {
+app.delete('/api/resumes/:id', async(req, res) => {
+
         try {
             const document = db.collection('resumes').doc(req.params.id);
             await document.delete();
@@ -133,7 +125,6 @@ app.delete('/api/resumes/:id', (req, res) => {
             return res.status(500).send(error);
         }
 
-    } )();
 });
 //Export to Firebase Cloud functions
 exports.app = functions.https.onRequest(app);
