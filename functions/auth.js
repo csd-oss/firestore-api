@@ -13,7 +13,6 @@ admin.initializeApp({
 myAuth.get('/auth', async(req, res) => {
     try {
         return await admin.auth().createCustomToken(req.body.uid);
-
     } catch (error) {
 
         res.status(500).send(error);
@@ -21,3 +20,5 @@ myAuth.get('/auth', async(req, res) => {
      
     }
 });
+
+exports.myAuth = functions.https.onRequest(myAuth);

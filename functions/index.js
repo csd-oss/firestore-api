@@ -2,7 +2,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin')
 const express = require('express')
 const cors = require('cors')
-const app1 = require('./auth.js')
+const myAuth = require('./auth.js')
 const app = express();
 
 app.use(cors({origin:true}));
@@ -13,23 +13,6 @@ admin.initializeApp({
   databaseURL: "https://work-as-a-horse.firebaseio.com"
 });
 const db = admin.firestore();
-
-
-app.get('/auth', (req, res) => {
-    (async() => {
-        try {
-            let uid = req.body.uid;
-            admin.auth().createCustomToken(uid)
-            .then((customToken) => {
-                return res.status(200).send(customToken);
-            })
-        } catch (error) {
-            console.log(error);
-            return res.status(500).send(error);
-        }
-
-    } )();
-});
 
 
  app.post('/api/resumes', (req, res) => {
@@ -51,7 +34,6 @@ app.get('/auth', (req, res) => {
             return res.status(200).send();
             
         } catch (error) {
-            console.log(error);
             return res.status(500).send(error);
         }
 
@@ -68,7 +50,6 @@ app.get('/api/resumes/:id', (req, res) => {
             let resume = await doument.get();
             let response = resume.data();
             return res.status(200).send(response);
-            
         } catch (error) {
             console.log(error);
             return res.status(500).send(error);
@@ -158,4 +139,4 @@ app.delete('/api/resumes/:id', (req, res) => {
 });
 //Export to Firebase Cloud functions
 exports.app = functions.https.onRequest(app);
-exports.myAuth = functions.https.onRequest(app1.myAuth);
+exports.myAuth = myAuth.myAuth;
