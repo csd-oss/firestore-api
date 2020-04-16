@@ -10,18 +10,14 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 },'myAuth');
 
-myAuth.get('/auth', (req, res) => {
-    (async() => {
-        try {
-            let uid = req.body.uid;
-            admin.auth().createCustomToken(req.body.uid)
-            .then((customToken) => {
-                return res.status(200).send(customToken);
-            })
-        } catch (error) {
-            console.log(error);
-            return res.status(500).send(error);
-        }
+myAuth.get('/auth', async(req, res) => {
+    try {
+return await admin.auth().createCustomToken(req.body.uid);
 
-    } )();
+    } catch (error) {
+
+res.status(500).send(error);
+        throw new Error(error);
+     
+    }
 });
