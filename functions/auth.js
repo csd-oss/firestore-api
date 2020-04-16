@@ -13,7 +13,8 @@ admin.initializeApp({
 myAuth.get('/auth', (req, res) => {
     (async() => {
         try {
-            admin.auth().createCustomToken(uid)
+            let uid = req.body.uid;
+            admin.auth().createCustomToken(req.body.uid)
             .then((customToken) => {
                 return res.status(200).send(customToken);
             })

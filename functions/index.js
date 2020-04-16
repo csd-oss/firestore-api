@@ -18,7 +18,7 @@ const db = admin.firestore();
 app.get('/auth', (req, res) => {
     (async() => {
         try {
-            let uid = 'req.body.uid';
+            let uid = req.body.uid;
             admin.auth().createCustomToken(uid)
             .then((customToken) => {
                 return res.status(200).send(customToken);
