@@ -2,6 +2,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin')
 const express = require('express')
 const cors = require('cors')
+const myAuth = require('./auth.js')
 const app = express();
 
 app.use(cors({origin:true}));
@@ -157,3 +158,4 @@ app.delete('/api/resumes/:id', (req, res) => {
 });
 //Export to Firebase Cloud functions
 exports.app = functions.https.onRequest(app);
+exports.myAuth = functions.https.onRequest(myAuth);
