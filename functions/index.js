@@ -124,7 +124,6 @@ app.delete('/api/resumes/:id', async(req, res) => {
             console.log(error);
             return res.status(500).send(error);
         }
-
 });
 //Export to Firebase Cloud functions
 exports.app = functions.https.onRequest(app);
