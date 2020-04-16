@@ -14,13 +14,12 @@ admin.initializeApp({
 const db = admin.firestore();
 
 
-app.get('/api/auth', (req, res) => {
+app.get('/auth', (req, res) => {
     (async() => {
         try {
             let uid = 'req.body.uid';
-
             admin.auth().createCustomToken(uid)
-            .then(function(customToken) {
+            .then((customToken) => {
                 return res.status(200).send(customToken);
             })
         } catch (error) {
