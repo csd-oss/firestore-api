@@ -3,6 +3,7 @@ firebase.json
 .firebaserc
 permisions.json
 firestore.code-workspace
+.vscode
 # Logs
 logs
 *.log
