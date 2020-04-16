@@ -10,7 +10,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 },'myAuth');
 
-myAuth.get('/auth', async(req, res) => {
+myAuth.get('/auth', async (req, res) => {
     try {
         return await admin.auth().createCustomToken(req.body.uid);
     } catch (error) {
@@ -20,5 +20,4 @@ myAuth.get('/auth', async(req, res) => {
      
     }
 });
-
 exports.myAuth = functions.https.onRequest(myAuth);

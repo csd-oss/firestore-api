@@ -59,8 +59,8 @@ app.get('/api/resumes/:id', (req, res) => {
 });
 //Read all resumes
 //Get
-app.get('/api/resumes', (req, res) => {
-    (async() => {
+app.get('/api/resumes', async(req, res) => {
+    
         try {
             let query = db.collection('resumes');
             let response = [];
@@ -91,8 +91,6 @@ app.get('/api/resumes', (req, res) => {
             console.log(error);
             return res.status(500).send(error);
         }
-
-    } )();
 });
 
 //Update
