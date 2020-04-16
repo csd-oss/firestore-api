@@ -13,9 +13,21 @@ admin.initializeApp({
 });
 const db = admin.firestore();
 
-//Routes 
- //Create
- //Post
+
+app.get('/api/auth', (req, res) => {
+    (async() => {
+        try {
+            
+            
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error);
+        }
+
+    } )();
+});
+
+
  app.post('/api/resumes', (req, res) => {
     (async() => {
         try {
